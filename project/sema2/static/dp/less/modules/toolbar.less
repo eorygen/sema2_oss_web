@@ -1,0 +1,90 @@
+//
+// Toolbar
+// --------------------------------------------------
+
+.icon-button {
+	background: @toolbar-background;
+	width: 40px;
+	height: 40px;
+	text-align: center;
+	padding: 10px;
+	border-radius: @toolbar-radius;
+	display: block;
+	transition: none;
+	&:hover {
+		background: @toolbar-hover;
+		cursor: pointer;
+		> i {
+			color: white;
+		}
+	}
+	> i {
+		color: @toolbar-hover;
+		font-size: @font-size-base;
+	}
+}
+
+.tool-container {
+	background-color: @toolbar-background;
+	background-size: 100% 100%;
+	border-radius: @toolbar-radius;
+	position: absolute;
+}
+
+.tool-container.tool-top, .tool-container.tool-bottom {
+	height: 40px;
+	border-bottom: 0;
+}
+
+.tool-top .tool-item, .tool-bottom .tool-item {
+	float: left;
+	border-right: 0;
+	border-left: 0;
+}
+
+.tool-item {
+	height: 100%;
+	display: block;
+	width: 40px;
+	height: 40px;
+	text-align: center;
+	padding: 10px;
+	transition: none;
+
+	> [class^="ss-"] {
+		color: @pieces-of-eight;
+	}
+}
+
+.tool-item.selected,
+.tool-item:hover {
+	background: @toolbar-hover;
+	> [class^="ss-"] {
+		color: white;
+	}
+}
+
+.tool-top .tool-item:first-child:hover,
+.tool-bottom .tool-item:first-child:hover {
+	border-top-left-radius: @toolbar-radius;
+	border-bottom-left-radius: @toolbar-radius;
+}
+
+.tool-top .tool-item:last-child:hover,
+.tool-bottom .tool-item:last-child:hover {
+	border-top-right-radius: @toolbar-radius;
+	border-bottom-right-radius: @toolbar-radius;
+}
+
+
+.tool-vertical-top .tool-item:first-child:hover,
+.tool-vertical-bottom  .tool-item:first-child:hover {
+	border-top-left-radius: @toolbar-radius;
+	border-top-right-radius: @toolbar-radius;
+}
+
+.tool-vertical-top .tool-item:last-child:hover,
+.tool-vertical-bottom  .tool-item:last-child:hover {
+	border-bottom-left-radius: @toolbar-radius;
+	border-bottom-right-radius: @toolbar-radius;
+}

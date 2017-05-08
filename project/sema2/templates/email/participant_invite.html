@@ -1,0 +1,75 @@
+{% load email %}
+
+{% subject %}You have been invited to participate in the {{ program_name }} program.{% endsubject %}
+
+{% body %}
+
+    Hello, {{ first_name }}.
+
+    You have been invited to participate in the {{ program_name }} program.
+
+    {% if is_existing_user %}
+        As you are an existing SEMA user you can simply use your existing SEMA participant ID and password to sign into the mobile apps.
+        You will be provided with download links for the mobile apps for your iPhone or Android phone after your confirm your enrollment.
+
+        Please Note: The mobile apps support Android 4.1+ and iOS 9+. Please notify your SEMA program manager if you have an unsupported device.
+
+            Participant ID: {{ username }}
+
+        If you have forgotten your password you can reset it here: {{ password_change_url }}
+    {% else %}
+        As you are a new participant we have automatically generated a participant ID and password for you. Use this participant ID and password to sign into the mobile apps.
+        You will be provided with download links for the mobile apps for your iPhone or Android phone after your confirm your enrollment.
+
+        Please Note: The mobile apps support Android 4.1+ and iOS 9+. Please notify your SEMA program manager if you have an unsupported device.
+
+            Participant ID: {{ username }}
+            Password: {{ password }}
+
+        If you forget your password you can reset it here: {{ password_change_url }}
+    {% endif %}
+
+    To confirm your enrollment in the program, please make sure you are viewing this email on your mobile device and then click the enrollment link below:
+
+    {{ enrollment_url }}
+
+    Sincerely,
+
+    <p>The Team</p>
+
+{% endbody %}
+
+{% bodyhtml %}
+
+    <p><strong>Hello, {{ first_name }}.</strong></p>
+
+    <p>You have been invited to participate in the {{ program_name }} program.</p>
+
+    {% if is_existing_user %}
+        <p>As you are an existing SEMA user you can simply use your existing SEMA participant ID and password to sign into the mobile apps.</p>
+        <p>You will be provided with download links for the mobile apps for your iPhone or Android phone after your confirm your enrollment.</p>
+        <p><strong>Please Note:</strong> The mobile apps support Android 4.1+ and iOS 9+. Please notify your SEMA program manager if you have an unsupported device.</p>
+        <p>
+            Participant ID: <strong>{{ username }}</strong><br/>
+        </p>
+        <p>If you have forgotten your password you can reset it here: <a href="{{ password_change_url }}">Reset Password</a></p>
+    {% else %}
+        <p>As you are a new participant we have automatically generated a participant ID and password for you. Use this participant ID and password to sign into the mobile apps.</p>
+        <p>You will be provided with download links for the mobile apps for your iPhone or Android phone after your confirm your enrollment.</p>
+        <p><strong>Please Note:</strong> The mobile apps support Android 4.1+ and iOS 9+. Please notify your SEMA program manager if you have an unsupported device.</p>
+        <p>
+            Participant ID: <strong>{{ username }}</strong><br/>
+            Password: <strong>{{ password }}</strong>
+        </p>
+        <p>If you forget your password you can reset it here: <a href="{{ password_change_url }}">Reset Password</a></p>
+    {% endif %}
+
+    <p>To confirm your enrollment in the program, please make sure you are viewing this email on your mobile device and then click the enrollment link below:</p>
+
+    <a href="{{ enrollment_url }}">Confirm Enrollment</a>
+
+    <p>Sincerely,</p>
+
+    <p>The Team</p>
+
+{% endbodyhtml %}

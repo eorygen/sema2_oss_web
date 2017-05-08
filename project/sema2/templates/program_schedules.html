@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block page_jsx %}
+
+    var program = {{ program_json|safe }};
+    var program_version = {{ program_version_json|safe }};
+
+    React.render(
+            <ProgramSchedulesPage program={program} program_version={program_version}/>,
+            document.getElementById('page')
+    );
+
+{% endblock %}

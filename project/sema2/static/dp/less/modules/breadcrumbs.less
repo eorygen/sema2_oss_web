@@ -1,0 +1,109 @@
+//
+// Breadcrumbs
+// --------------------------------------------------
+
+//
+// Default and Minimal Breadcrumbs
+// --------------------------------------------------
+
+.breadcrumb {
+	background: @inverse;
+	border: 1px solid @coral;
+	border-radius: 4px;
+	> li {
+		font-size: @font-size-base * 0.875;
+	}
+
+	li + li:before {
+		content: "\203A";
+	}
+
+	&.breadcrumbs-minimal {
+		border: none;
+
+		li + li:before {
+			content: "/\00a0";
+		}
+	}
+
+  	> .active {
+    	color: @the-black-flag;
+  	}
+}
+
+//
+// Detailed Breadcrumbs
+// --------------------------------------------------
+
+.breadcrumb-detailed {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	border: 1px solid @coral;
+	border-radius: 4px;
+	li {
+		a {
+			padding: 8px 5px 9px 20px;
+			float: left;
+			position: relative;
+			font-size: @font-size-base * 0.875;
+			color: @lagoon;
+
+			&:hover {
+				background: @coastal-surf;
+
+				&:after {
+					border-left: 10px solid @coastal-surf;
+				}
+			}
+		}
+	}
+
+	li:first-child {
+		a {
+			padding-left: 15px;
+		}
+	}
+
+	li:last-child {
+		a {
+			color: @the-black-flag;
+
+			&:hover {
+				background: none;
+				cursor: default;
+				&:after {
+					border-left: 10px solid white;
+				}
+			}
+		}
+	}
+
+	li {
+		> a:before,
+		> a:after {
+			content: " ";
+			display: block;
+			width: 0;
+			height: 0;
+			border-top: 21px solid transparent;
+			border-bottom: 21px solid transparent;
+			position: absolute;
+			top: 49%;
+			left: 100%;
+			z-index: 3;
+			transition: 0.25s;
+			margin-top: -21px;
+		}
+
+		> a:before {
+			margin-left: 1px;
+			border-left: 10px solid @coral;
+		}
+
+		> a:after {
+			border-left: 10px solid white;
+		}
+	}
+}

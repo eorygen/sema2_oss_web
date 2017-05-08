@@ -1,0 +1,60 @@
+//
+// Panels
+// --------------------------------------------------
+
+.panel {
+	.box-shadow(none);
+}
+
+.panel-body {
+	color: @the-black-flag;
+}
+
+.panel-default {
+	border-color: @coral;
+	& > .panel-heading {
+		color: @the-black-flag;
+		background-color: @coastal-surf;
+		border-color: @coral;
+
+		+ .panel-collapse .panel-body {
+			border-top-color: @coral;
+		}
+	}
+	& > .panel-footer {
+		+ .panel-collapse .panel-body {
+			border-bottom-color: @coral;
+		}
+	}
+}
+
+.panel-title {
+	font-size: @font-size-base * 1.25;
+	font-family: @font-family-semi-bold;
+}
+
+.panel-footer {
+	background-color: @coastal-surf;
+	border-top-color: @coral;
+}
+
+.panel-primary {
+	.panel-variant(@lagoon; @overboard; @lagoon; @lagoon);
+}
+
+.panel-info {
+	.panel-variant(@bruise; @sugar-plum; @bruise; @bruise);
+}
+
+.panel-success {
+	.panel-variant(@emerald-cove; @land-lubber; @emerald-cove; @emerald-cove);
+}
+
+.panel-warning {
+	.panel-variant(@banana; @doubloon; @banana; @banana);
+}
+
+.panel-danger {
+	.panel-variant(@strawberry; @first-blood; @strawberry; @strawberry);
+}
+

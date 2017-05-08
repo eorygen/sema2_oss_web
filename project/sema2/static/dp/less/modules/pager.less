@@ -1,0 +1,48 @@
+//
+// Pager
+// --------------------------------------------------
+
+.pager {
+	 li {
+		> a,
+		> span {
+			border-radius: 5px;
+			border: 1px solid @coral;
+			font-size: @font-size-base;
+			color: @lagoon;
+			padding: 8px 14px 6px 14px;
+			min-width: 100px;
+
+			&:hover,
+			&:focus {
+				background-color: @coastal-surf;
+			}
+		}
+
+		&.active {
+			> a {
+				background-color: @coastal-surf;
+			}
+		}
+
+		&.disabled {
+			> a,
+			> a:hover,
+			> a:focus,
+			> span {
+				color: @cutlass;
+				background-color: white;
+				cursor: not-allowed;
+			}
+		}
+	}
+}
+
+.pager-rounded {
+	li {
+		> a,
+		> span {
+			border-radius: 50px;
+		}
+	}
+}

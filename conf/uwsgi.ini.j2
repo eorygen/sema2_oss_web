@@ -1,0 +1,18 @@
+[uwsgi]
+
+# Variables
+base = /var/www/%n
+app = {{django_wsgi_app}}:application
+
+# Generic Config
+plugins = http,python
+home = /var/www/%n/venv
+pythonpath = {{django_root}}
+socket = 127.0.0.1:{{uwsgi_port}}
+module = %(app)
+logto = {{log_root}}/uwsgi.log
+uid = {{ lookup('env','USER') }}
+gid = www-data
+chmod-socket = 664
+chown-socket = www-data
+umask = 002

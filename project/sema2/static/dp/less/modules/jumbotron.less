@@ -1,0 +1,38 @@
+//
+// Jumbotron
+// --------------------------------------------------
+
+.jumbotron {
+    background-image: @jumbotron-image;
+    padding: 70px 30px;
+    h1,
+    .h1 {
+        color: white;
+        font-size: @btn-font-size-base * 2.2;
+        font-family: @font-family-extra-light;
+        font-weight: normal;
+        line-height: 1;
+        margin-bottom: 25px;
+    }
+
+    p {
+        font-size: @btn-font-size-base * 0.9;
+        font-weight: 200;
+        color: white;
+    }
+}
+
+@media (min-width: 1000px) {
+    .jumbotron {
+        padding: 70px 30px;
+        h1,
+        .h1 {
+            font-size: @btn-font-size-base * 3.75;
+            margin-bottom: 25px;
+        }
+
+        p {
+            font-size: @btn-font-size-base * 1.5;
+        }
+    }
+}

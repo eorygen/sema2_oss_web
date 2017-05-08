@@ -1,0 +1,7 @@
+{% load account %}{% user_display user as user_display %}{% load i18n %}{% autoescape off %}
+
+Thanks for signing up to the Safe D study.
+
+To complete registration, please confirm your email address by going to {{ activate_url }}
+
+{% endautoescape %}

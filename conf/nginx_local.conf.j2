@@ -1,0 +1,44 @@
+upstream app_uwsgi {
+    server 127.0.0.1:{{uwsgi_port}};
+}
+
+server {
+    listen 80;
+
+    server_name {{project_domain}};
+    root /var/www/{{project_name}};
+    access_log /var/www/{{project_name}}/logs/nginx_access.log;
+    error_log /var/www/{{project_name}}/logs/nginx_error.log;
+
+    location /static/ {
+        alias /var/www/{{project_name}}/static/;
+        #include /etc/nginx/gzip.conf;
+        #expires 30d;
+        access_log off;
+    }
+
+    location /media/ {
+        alias /var/www/{{project_name}}/media/;
+        #include /etc/nginx/gzip.conf;
+        #expires 30d;
+        access_log off;
+    }
+
+    location /api/ {
+        include uwsgi_params;
+
+        uwsgi_param X-Real-IP $remote_addr;
+        uwsgi_param Host $http_host;
+
+        uwsgi_pass app_uwsgi;
+    }
+
+    location / {
+        include uwsgi_params;
+
+        uwsgi_param X-Real-IP $remote_addr;
+        uwsgi_param Host $http_host;
+
+        uwsgi_pass app_uwsgi;
+    }
+}

@@ -1,0 +1,237 @@
+//
+// Button groups
+// --------------------------------------------------
+
+.btn-group {
+	.btn-stroke + .btn-stroke,
+	.btn-stroke + .btn-group,
+	.btn-group + .btn-stroke,
+	.btn-group + .btn-group {
+		margin-left: -2px;
+	}
+}
+
+.btn-group-dropdown {
+	.dropdown-toggle > .dropdown-icon {
+		color: @cutlass;
+		padding-right: 7px;
+		vertical-align: middle;
+	}
+	.dropdown-toggle span.pull-right {
+		padding-left: 10px;
+	}
+}
+
+.btn-group,
+.btn-group-vertical {
+	> .btn {
+		text-transform: none;
+		font-family: @font-family-base;
+		text-align: left;
+		.transition(none);
+
+		&.active {
+			background: @coastal-surf;
+			color: @gunpowder;
+			border-color: @coral;
+			z-index: 0
+		}
+	}
+
+	.btn-group-dropdown {
+		.btn-default {
+			[class^="ss-"] {
+				color: @pieces-of-eight;
+			}
+
+			&.dropdown-toggle {
+				color: @lagoon;
+			}
+
+			&:hover {
+				border-color: @lagoon;
+			}
+
+			&:active {
+				border-color: @pieces-of-eight;
+				color: @the-black-flag;
+			}
+		}
+	}
+}
+
+.btn-group-justified {
+  	&.btn-group {
+  		.btn {
+			text-align: center;
+			[class^="ss-"],
+			{
+				margin-left: 5px;
+			}
+		}
+  	}
+}
+
+.btn-group-xs > .btn { .btn-xs(); }
+.btn-group-sm > .btn { .btn-sm(); }
+.btn-group-lg > .btn { .btn-lg(); }
+.btn-group-kr > .btn { .btn-kr(); }
+
+.btn-group-dropdown {
+
+	.btn-sm {
+		font-size: @font-size-base * 0.875;
+	}
+
+	.btn-lg {
+		font-size: @font-size-base * 1.25;
+	}
+
+	> .btn {
+		text-transform: none;
+		font-family: @font-family-base;
+		.transition(none);
+
+		&+.dropdown-toggle {
+			min-width: 40px;
+			text-align: center;
+		}
+
+		&.btn-dropdown {
+			text-align: left;
+		}
+	}
+
+	.dropdown-toggle {
+		padding-left: 13px;
+		padding-right: 13px;
+		text-align: left;
+	}
+
+	.btn-default {
+		color: @the-black-flag;
+
+		&:hover {
+			border-color: @pieces-of-eight;
+			[class^="ss-"] {
+				color: @lagoon;
+			}
+		}
+
+		&:active {
+			background: @coastal-surf;
+			border-color: @pieces-of-eight;
+			[class^="ss-"] {
+				color: @lagoon;
+			}
+		}
+	}
+
+	.btn-primary {
+		&.dropdown-toggle {
+			border-left: 1px solid @overboard;
+		}
+	}
+
+	.btn-danger {
+		&.dropdown-toggle {
+			border-left: 1px solid @first-blood;
+		}
+	}
+
+	.btn-inverse {
+		color: @pieces-of-eight;
+
+		&:hover {
+			color: white;
+		}
+
+		&:active {
+			background: black;
+			border-color: black;
+			[class^="ss-"] {
+				color: @lagoon;
+			}
+		}
+
+		&.dropdown-toggle {
+			border-left: 1px solid black;
+		}
+	}
+
+	&.open {
+		.btn {
+			.box-shadow(none);
+			&.btn-embossed {
+				&.btn-danger {
+					box-shadow: 0 5px @first-blood;
+				}
+				&.btn-primary {
+					box-shadow: 0 5px @overboard;
+				}
+				&.btn-inverse {
+					box-shadow: 0 5px #000000;
+				}
+			}
+		}
+
+		.btn.dropdown-toggle {
+
+			&.btn-default {
+				background-color: @coastal-surf;
+				border-color: @cutlass;
+				color: @the-black-flag;
+				[class^="ss-"] {
+					color: @lagoon;
+				}
+			}
+
+			&.btn-primary {
+				background: @overboard;
+				border-color: @overboard;
+				color: @inverse;
+			}
+
+			&.btn-danger {
+				background: @first-blood;
+				border-color: @first-blood;
+				color: @inverse;
+			}
+
+			&.btn-inverse {
+				background: black;
+				border-color: black;
+				color: @inverse;
+				[class^="ss-"] {
+					color: @lagoon;
+				}
+			}
+
+			&.btn-embossed {
+
+			   	&.btn-danger {
+			   		.btn-embossed-dropdown( @strawberry, @first-blood );
+				}
+
+			   	&.btn-primary {
+			   		.btn-embossed-dropdown( @lagoon, @overboard );
+				}
+
+			   	&.btn-inverse {
+			   		.btn-embossed-dropdown( @the-black-flag, #000000 );
+				}
+			}
+		}
+	}
+}
+
+@media screen and (min-width : 320px) and (max-width : 1000px) {
+	.btn-group-justified .btn-group-dropdown .dropdown-toggle {
+		padding-left: 5px;
+		padding-right: 5px;
+	}
+
+	.btn-group-justified.btn-group .btn [class^="ss-"] {
+		margin: 0;
+	}
+}

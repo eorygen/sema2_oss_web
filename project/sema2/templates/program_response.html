@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block program_menu_active %}responses{% endblock %}
+
+{% block page_jsx %}
+
+    var program = {{ program_json|safe }};
+    var program_version = {{ program_version_json|safe }};
+    var answer_set = {{ answer_set_json|safe }};
+    var cur_page = {{ cur_page }};
+
+    React.render(
+            <ProgramResponsePage program={program} program_version={program_version} answer_set={answer_set} cur_page={cur_page}/>,
+            document.getElementById('page')
+    );
+
+{% endblock %}

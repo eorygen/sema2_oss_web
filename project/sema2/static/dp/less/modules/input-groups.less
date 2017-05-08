@@ -1,0 +1,77 @@
+//
+// Input groups
+// --------------------------------------------------
+
+.input-group-lg > .input-group-addon {
+    font-size: @input-font-size-large;
+    padding: 3px 5px;
+    min-width: @input-height-large;
+    max-width: @input-height-large;
+}
+
+.input-group-sm > .input-group-addon {
+    font-size: @input-font-size-small;
+    padding: 3px 5px;
+    min-width: @input-height-small;
+    max-width: @input-height-small;
+}
+
+// Text input groups
+// -------------------------
+.input-group-addon {
+    padding: 6px 10px;
+    color: @pieces-of-eight;
+    background-color: @input-bg-disabled;
+    border: 1px solid @coral;
+    border-radius: @border-radius-large;
+    min-width: 40px;
+    max-width: 40px;
+
+    &.input-sm {
+        font-size: @input-font-size-small;
+        border-radius: 0;
+    }
+
+    &.input-lg {
+        font-size: @input-font-size-large;
+        border-radius: 0;
+    }
+
+}
+
+.input-group-btn {
+    > .btn {
+        .transition(none);
+        line-height: @line-height-base;
+
+        &:hover,
+        &:focus,
+        &:active {
+            z-index: 3;
+        }
+
+        &:active {
+            color: white;
+        }
+
+        &.dropdown-toggle {
+            &:active {
+                color: @the-black-flag;
+                background: @coastal-surf;
+                border-color: @pieces-of-eight;
+                [class^="ss-"] {
+                    color: @lagoon;
+                }
+            }
+        }
+
+    }
+    .dropdown-toggle,
+    .btn-dropdown {
+        color: @the-black-flag;
+        text-transform: none;
+        padding: 7px 13px 7px;
+        font-family: @font-family-base;
+        white-space: nowrap;
+    }
+}

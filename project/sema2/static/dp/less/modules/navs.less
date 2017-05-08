@@ -1,0 +1,199 @@
+//
+// Navs
+// --------------------------------------------------
+
+.nav {
+    li {
+        a {
+            &.dropdown-toggle {
+                > [class^="ss-"] {
+                    position: relative;
+                    top: 2px;
+                    font-size: @font-size-base * 0.75;
+                    margin-left: 3px;
+                }
+            }
+            &:focus {
+                background: transparent;
+            }
+        }
+
+        &.disabled > a {
+            color: @cutlass;
+            &:hover,
+            &:focus {
+              color: @cutlass;
+            }
+        }
+    }
+
+    .open > a {
+        &,
+        &:hover,
+        &:focus {
+            background-color: white;
+            border-color: white white @coral;
+        }
+    }
+}
+
+// Tabs
+// -------------------------
+
+.nav-tabs {
+    border-bottom: 1px solid @coral;
+    > li {
+        > a {
+            &:hover {
+                border-color: transparent;
+                background: none;
+            }
+        }
+
+        &.active > a {
+            &,
+            &:hover,
+            &:focus {
+                color: @the-black-flag;
+                border: 1px solid @coral;
+                border-bottom-color: transparent;
+                font-family: @font-family-semi-bold;
+            }
+        }
+    }
+
+    &.nav-justified {
+        .nav-tabs-justified();
+        > li > a:hover {
+            border-color: @coral;
+        }
+    }
+}
+
+.nav-stroke {
+    border-bottom-width: 2px;
+    &.nav-tabs {
+        > li {
+            margin-bottom: -2px;
+        }
+    }
+
+    > li {
+        > a {
+            border-width: 2px;
+            &:hover {
+                border-width: 2px;
+            }
+        }
+
+        &.active > a {
+            &,
+            &:hover,
+            &:focus {
+                border-width: 2px;
+            }
+        }
+    }
+
+    &.nav-justified {
+        .nav-tabs-justified();
+        > .active {
+            > a,
+            > a:hover,
+            > a:focus {
+                border-width: 2px;
+            }
+        }
+    }
+}
+
+// Pills
+// -------------------------
+.nav-pills {
+    > li {
+        > a {
+            line-height: 1.3;
+            &:hover {
+                background-color: @cutlass;
+                color: @inverse;
+            }
+        }
+
+        &.active > a {
+            &,
+            &:hover,
+            &:focus {
+                color: @inverse;
+                background-color: @lagoon;
+            }
+        }
+    }
+
+    .open > a {
+        &,
+        &:hover,
+        &:focus {
+            background-color: @cutlass;
+            color: @inverse;
+        }
+    }
+}
+
+.nav-tabs-justified {
+    > .active > a,
+    > .active > a:hover,
+    > .active > a:focus {
+        border: 1px solid @coral;
+    }
+}
+
+.nav-tabs .dropdown-menu {
+    margin-top: 8px;
+    .border-top-radius(4px);
+}
+
+@media (min-width: 1000px) {
+
+    .nav-tabs {
+        > li {
+            > a {
+                &:hover {
+                    border-color: white white @coral;
+                }
+            }
+        }
+        &.nav-justified {
+            > .active > a,
+            > .active > a:hover,
+            > .active > a:focus {
+                border-bottom-color: transparent;
+            }
+
+            > li > a:hover {
+                border-color: white white @coral;
+            }
+        }
+    }
+
+    .nav-stroke {
+        &.nav-justified {
+            border-bottom: 2px solid @coral;
+            > .active > a,
+            > .active > a:hover,
+            > .active > a:focus {
+                border-bottom-color: white;
+            }
+
+            > li {
+                > a {
+                    margin-bottom: -2px;
+                    border-bottom: 0;
+                    &:hover {
+                        border-color: transparent;
+                    }
+                }
+            }
+        }
+    }
+
+}

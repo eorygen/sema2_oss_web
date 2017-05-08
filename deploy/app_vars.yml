@@ -1,0 +1,45 @@
+#
+# Project
+# These values are used for directory names and nginx values
+# Project domain should be the domain you wish to run SEMA on or your server's IP address
+
+project_name: sema
+project_domain: <domain for nginx to listen on or server ip>
+
+#
+# Database
+# The database will be automatically provisioned by the provisioning script
+#
+
+db_name: sema
+db_password: <database password>
+
+#
+# Generated
+# These settings should be left as-as
+#
+
+django_wsgi_app: project.wsgi
+uwsgi_port: 9000
+
+virtualenv_root: "/var/www/{{ project_name }}/venv"
+project_root: "/var/www/{{ project_name }}"
+
+src_root: "{{ project_root }}/src"
+conf_root: "{{ project_root }}/conf"
+log_root: "{{ project_root }}/logs"
+data_root: "{{ project_root }}/data"
+static_root: "{{ project_root }}/static"
+media_root: "{{ project_root }}/media"
+certs_root: "{{ project_root }}/certs"
+well_known_root: "{{ project_root }}/.well-known"
+
+django_root: "{{ src_root }}/project"
+project_conf_root: "{{ src_root }}/conf"
+
+celery_service_name: "{{project_name}}_celery"
+celery_export_service_name: "{{project_name}}_celery_export"
+celery_beat_service_name: "{{project_name}}_celery_beat"
+redis_broker_service_name: "{{project_name}}_redis_broker"
+redis_broker_config_name: "{{project_name}}_redis_broker"
+redis_broker_service_port: 6400

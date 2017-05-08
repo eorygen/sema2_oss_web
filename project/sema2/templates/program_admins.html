@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block program_menu_active %}participants{% endblock %}
+
+{% block page_jsx %}
+
+    var program = {{ program_json|safe }};
+    var program_version = {{ program_version_json|safe }};
+
+    React.render(
+            <ProgramAdminsPage program={program} program_version={program_version}/>,
+            document.getElementById('page')
+    );
+
+{% endblock %}

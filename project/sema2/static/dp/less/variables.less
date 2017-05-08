@@ -1,0 +1,205 @@
+//
+// Variables
+// --------------------------------------------------
+
+// Colors
+
+// Color swatches
+
+@lagoon:					#02BAF2;
+@overboard:             	#009DCD;
+@strawberry:            	#F84545;
+@first-blood:  	     		#CC0000;
+@banana:              		#FAD46B;
+@doubloon:              	#F3BC65;
+@bruise:                	#A88CD5;
+@sugar-plum:            	#9175BD;
+@emerald-cove:          	#3EB5AC;
+@land-lubber:           	#28948C;
+@horizon:               	#F58410;
+@nassua-sunset:         	#E96300;
+
+// Shades swatches
+
+@the-black-flag:			#364347;
+@gunpowder:					#5E6969;
+@pieces-of-eight:  			#93A4AA;
+@cutlass:  					#B2C6CD;
+@coral:  					#D6E1E5;
+@coastal-surf:				#E1EEF3;
+
+@inverse:               	#FFF;
+@body-bg:                   #FFF;
+@text-color:                #000;
+
+
+
+@font-size-h1:              	floor(@font-size-base * 2.3);
+@font-size-h2:              	ceil(@font-size-base * 1.85);
+@font-size-h3:              	ceil(@font-size-base * 1.5);
+@font-size-h4:              	ceil(@font-size-base * 1.25);
+@font-size-h5:              	@font-size-base;
+@font-size-h6:              	ceil(@font-size-base * 0.85);
+
+@line-height-computed:      	floor(@font-size-base * @line-height-base);
+
+@headings-font-family:      	@font-family-semi-bold;
+@headings-font-weight:      	700;
+@headings-line-height:      	1.1;
+@headings-color:            	@the-black-flag;
+
+
+// Components
+
+@border-radius-base:        	4px;
+@border-radius-large:       	4px;
+@border-radius-small:       	3px;
+
+
+// Buttons
+
+@btn-font-size-base:         	@font-size-base;
+@btn-font-size-xs:           	ceil(@font-size-base * 0.70);
+@btn-font-size-sm:           	floor(@font-size-base * 0.90);
+@btn-font-size-lg:           	ceil(@font-size-base * 1.20);
+@btn-font-size-kr:           	floor(@font-size-base * 1.50);
+
+@btn-line-height-base:       	1.60;
+@btn-line-height-kr:         	1.25;
+@btn-line-height-lg:         	1.45;
+@btn-line-height-sm:         	1.30;
+@btn-line-height-xs:         	1.083;
+
+@btn-default-color:          	@inverse;
+@btn-default-bg:             	#FFF;
+
+@hover-mix-percentage:			80%;
+
+@btn-default-hover-bg:       	mix(@lagoon, white, @hover-mix-percentage);
+@btn-default-active-bg:      	@overboard;
+@btn-default-disabled-bg:    	@coastal-surf;
+@btn-default-disabled-border:   @coral;
+
+@btn-primary-hover-bg:       	mix(@lagoon, white, @hover-mix-percentage);
+@btn-primary-active-bg:      	@overboard;
+@btn-primary-disabled-bg:    	#b3eafb;
+
+@btn-danger-hover-bg:        	mix(@strawberry, white, @hover-mix-percentage);
+@btn-danger-active-bg:       	@first-blood;
+@btn-danger-disabled-bg:     	#fdc7c7;
+
+@btn-warning-hover-bg:       	mix(@banana, white, @hover-mix-percentage);
+@btn-warning-active-bg:      	@doubloon;
+@btn-warning-disabled-bg:    	#fce5a6;
+
+@btn-info-hover-bg:          	mix(@coral, white, @hover-mix-percentage);
+@btn-info-active-bg:         	@pieces-of-eight;
+@btn-info-disabled-bg:       	#e6edef;
+
+@btn-success-hover-bg:          mix(@emerald-cove, white, @hover-mix-percentage);
+@btn-success-active-bg:         @pieces-of-eight;
+@btn-success-disabled-bg:       #e6edef;
+
+@btn-purple-hover-bg:          	mix(@bruise, white, @hover-mix-percentage);
+@btn-purple-active-bg:         	@pieces-of-eight;
+@btn-purple-disabled-bg:       	#e6edef;
+
+@btn-orange-hover-bg:          	mix(@horizon, white, @hover-mix-percentage);
+@btn-orange-active-bg:         	@pieces-of-eight;
+@btn-orange-disabled-bg:       	#e6edef;
+
+@btn-inverse-hover-bg:         	mix(@the-black-flag, white, @hover-mix-percentage);
+@btn-inverse-active-bg:         @pieces-of-eight;
+@btn-inverse-disabled-bg:       @the-black-flag;
+
+@btn-link-disabled-color:    	#FFF;
+
+@btn-animate-succss-text: 		"Success";
+@btn-animate-error-text: 		"Error";
+
+
+
+// Forms
+
+@input-font-size-base:      	@font-size-base;
+@input-font-size-small:     	floor(@font-size-base * 0.9);
+@input-font-size-large:     	ceil(@font-size-base * 1.2);
+
+@input-line-height-base:    	1.467;
+@input-line-height-small:   	1.462;
+@input-line-height-large:   	1.235;
+
+@input-bg-disabled:         	@coastal-surf;
+
+@input-height-small:        	30px;
+@input-height-base:         	40px;
+@input-height-large:        	50px;
+
+@input-border-radius:       	@border-radius-large;
+
+@input-warning:					@banana;
+@input-success:					@emerald-cove;
+@input-danger:					@strawberry;
+
+
+// Labels
+
+@label-default-bg: 				@cutlass;
+@label-primary-bg: 				@lagoon;
+@label-success-bg: 				@emerald-cove;
+@label-info-bg: 				@bruise;
+@label-warning-bg: 				@banana;
+@label-danger-bg: 				@strawberry;
+
+
+// Alerts
+
+@alert-primary-bg:            	@lagoon;
+@alert-primary-text:          	@overboard;
+
+@alert-success-bg:            	@emerald-cove;
+@alert-success-text:          	@land-lubber;
+
+@alert-info-bg:               	@bruise;
+@alert-info-text:             	@sugar-plum;
+
+@alert-warning-bg:            	@banana;
+@alert-warning-text:          	@doubloon;
+
+@alert-danger-bg:             	@strawberry;
+@alert-danger-text:           	@first-blood;
+
+
+// Progress Bars
+
+@progress-bg: 				  	@coastal-surf;
+@progress-bar-height: 		  	10px;
+
+@progress-bar-color:  		  	@lagoon;
+
+@progress-bar-success-bg: 		@emerald-cove;
+@progress-bar-danger-bg: 		@strawberry;
+@progress-bar-warning-bg: 		@banana;
+@progress-bar-info-bg: 			@bruise;
+
+
+// Jumbotron
+
+@jumbotron-image: 				url('../images/jumbotron.jpg');
+
+
+// Switiches
+
+@switch-offset: 4px;
+
+
+// Thumbnails
+
+@thumbnail-radius: 5px;
+
+
+// Toolbar
+
+@toolbar-radius: 				6px;
+@toolbar-background: 			@the-black-flag;
+@toolbar-hover: 				@lagoon;

@@ -1,0 +1,110 @@
+//
+// Color Palette
+// --------------------------------------------------
+
+.pallete-items {
+    margin-left: -10px;
+}
+
+.pallete-item {
+    width: 140px;
+    float: left;
+    margin: 0 0 0 10px;
+    &.pallete-joined {
+        margin: 0;
+        width: 152px;
+
+        &:first-child,
+        &:last-child {
+            width: 150px;
+        }
+
+        &:first-of-type {
+            .palette {
+                border-top-left-radius: @border-radius-base;
+                border-bottom-left-radius: @border-radius-base;
+            }
+        }
+
+        &:last-child {
+            .palette {
+                border-top-right-radius: @border-radius-base;
+                border-bottom-right-radius: @border-radius-base;
+            }
+        }
+    }
+}
+
+.palette-primary {
+    border-top-left-radius: @border-radius-base;
+    border-top-right-radius: @border-radius-base;
+    padding: 48px 0 8px 10px;
+}
+
+.palette-secondary {
+    border-bottom-left-radius: @border-radius-base;
+    border-bottom-right-radius: @border-radius-base;
+    padding: 18px 10px 8px 10px;
+}
+
+.palette-shade {
+    padding: 46px 0 10px 10px;
+}
+
+.palette {
+    font-size: @font-size-base;
+    line-height: 1.214; // ~17px
+    color: @inverse;
+    margin: 0;
+
+    dt,
+    dd {
+        line-height: 1.1;
+    }
+    dt {
+        display: block;
+        font-family: @font-family-semi-bold;
+    }
+    dd {
+        font-weight: 300;
+        margin-left: 0;
+        -webkit-font-smoothing: subpixel-antialiased;
+    }
+}
+
+//
+// Pallete grid
+// --------------------------------------------------
+.calc-color(~"lagoon", ~"overboard");
+.calc-color(~"strawberry", ~"first-blood");
+.calc-color(~"banana", ~"doubloon");
+.calc-color(~"bruise", ~"sugar-plum");
+.calc-color(~"emerald-cove", ~"land-lubber");
+.calc-color(~"horizon", ~"nassua-sunset");
+
+.calc-color-shade(~"the-black-flag");
+.calc-color-shade(~"gunpowder");
+.calc-color-shade(~"pieces-of-eight");
+.calc-color-shade(~"cutlass");
+.calc-color-shade(~"coral");
+.calc-color-shade(~"coastal-surf");
+
+.palette-clouds {
+    color: #bdc3c7;
+}
+
+.palette-paragraph {
+    color: #7f8c8d;
+    font-size: @font-size-base * 0.75;
+    line-height: 17px;
+    span {
+        color: #bdc3c7;
+    }
+}
+
+.palette-headline {
+    color: #7f8c8d;
+    font-size: @font-size-base * 0.8125;
+    font-weight: 700;
+    margin-top: -3px;
+}

@@ -1,0 +1,206 @@
+- hosts: webservers
+  gather_facts: no
+  become: yes
+  become_method: sudo
+
+  vars_files:
+    - app_vars.yml
+
+  vars_prompt:
+    - name: deploy_env
+      prompt: NGINX config [local, prod]
+      default: "local"
+      private: no
+
+  tasks:
+
+    - debug: var=deploy_env
+
+    - apt: update_cache=yes
+      become_user: root
+
+    - apt: name=git state=present
+      become_user: root
+
+    - apt: name=postgresql state=present
+      become_user: root
+
+    - apt: name=redis-server state=present
+      become_user: root
+
+    - apt: name=nginx state=present
+      become_user: root
+
+    - apt: name=uwsgi state=present
+      become_user: root
+
+    - apt: name=python-virtualenv state=present
+      become_user: root
+
+    - apt: name=libpq-dev state=present
+      become_user: root
+
+    - apt: name=python-dev state=present
+      become_user: root
+
+    - apt: name=uwsgi-plugin-python state=present
+      become_user: root
+
+    - apt: name=python-passlib state=present
+      become_user: root
+
+    - apt: name=graphviz state=present
+      become_user: root
+
+    - apt: name=python-psycopg2 state=present
+      become_user: root
+
+    - name: Remove the default NGINX site
+      file: path="/etc/nginx/sites-enabled/default" state=absent
+      become_user: root
+
+    - name: Create venv root
+      file: path="{{virtualenv_root}}" group=www-data state=directory mode=g+w
+      become_user: root
+
+    - name: Create src root
+      file: path="{{src_root}}" group=www-data state=directory mode=g+w
+      become_user: root
+
+    - name: Create conf root
+      file: path="{{conf_root}}" group=www-data state=directory mode=g+w
+      become_user: root
+
+    - name: Create logs root
+      file: path="{{log_root}}" group=www-data state=directory mode=g+w
+      become_user: root
+
+    - name: Create data root
+      file: path="{{data_root}}" group=www-data state=directory mode=g+w
+      become_user: root
+
+    - name: Create data/redis
+      file: path="{{data_root}}/redis" group=www-data state=directory mode=g+w
+      become_user: root
+
+    - name: Create data/celery
+      file: path="{{data_root}}/celery" group=www-data state=directory mode=g+w
+      become_user: root
+
+    - name: Create static root
+      file: path="{{static_root}}" group=www-data state=directory mode=g+w
+      become_user: root
+
+    - name: Create media root
+      file: path="{{media_root}}" group=www-data state=directory mode=g+w
+      become_user: root
+
+    - name: Create certs root
+      file: path="{{certs_root}}" group=www-data state=directory mode=g+w
+      become_user: root
+
+    - name: Create well known certs root
+      file: path="{{well_known_root}}" group=www-data state=directory mode=g+w
+
+    - name: Touch uwsgi log file
+      file: path="{{log_root}}/{{project_name}}.log" group=www-data state=touch
+      become_user: root
+
+    - name: Create DB
+      become: yes
+      become_user: postgres
+      postgresql_db:
+        name: "{{db_name}}"
+        encoding: UTF-8
+
+    - name: Make Postgres user
+      become: yes
+      become_user: postgres
+      postgresql_user:
+        db: "{{db_name}}"
+        name: "{{db_name}}"
+        password: "{{ db_password }}"
+        priv: ALL
+
+    - name: Copy source
+      synchronize: src=../project dest={{ src_root }}
+
+    - name: Copy env file
+      template: src=../deploy/env.production dest={{ django_root }}/.env
+
+    - name: Owning files
+      file: path="{{ project_root }}" group=www-data recurse=yes
+      become_user: root
+
+    - name: Owning db
+      file: path={{ django_root }}/db.sqlite3 mode=775
+      ignore_errors: True
+
+    - name: Create virtualenv
+      pip: requirements="{{ django_root }}/requirements.txt" virtualenv="{{virtualenv_root}}"
+
+    - name: Collecting static resources
+      django_manage:  command=collectstatic app_path={{ django_root }} virtualenv={{ virtualenv_root }}
+
+    - name: Running migrations
+      shell: "cd {{ virtualenv_root }} && {{ virtualenv_root }}/bin/python {{ django_root }}/manage.py migrate"
+
+    - name: Copying nginx config
+      template: src=../conf/nginx_{{ deploy_env }}.conf.j2 dest={{ conf_root }}/nginx.conf group=www-data mode=755
+      become_user: root
+
+    - name: Link nginx config
+      file: src={{ conf_root }}/nginx.conf dest=/etc/nginx/sites-enabled/{{project_name}} group=www-data state=link
+      become_user: root
+
+    - name: Copying uwsgi config
+      template: src=../conf/uwsgi.ini.j2 dest={{ conf_root }}/uwsgi.ini
+      become_user: root
+
+    - name: Link uwsgi config
+      file: src={{ conf_root }}/uwsgi.ini dest=/etc/uwsgi/apps-enabled/{{project_name}}.ini group=www-data state=link
+      become_user: root
+
+    - name: Installing celery upstart service
+      template: src=../conf/celeryd.service.j2 dest=/etc/init/{{ celery_service_name }}.conf mode=644
+      become_user: root
+
+    - name: Installing celery export upstart service
+      template: src=../conf/celeryd_export.service.j2 dest=/etc/init/{{ celery_export_service_name }}.conf mode=644
+      become_user: root
+
+    - name: Installing celery upstart service
+      template: src=../conf/celeryd_beat.service.j2 dest=/etc/init/{{ celery_beat_service_name }}.conf mode=644
+      become_user: root
+
+    - name: Installing redis service
+      template: src=../conf/redis_broker.service.j2 dest=/etc/init/{{ redis_broker_service_name }}.conf mode=644
+      become_user: root
+
+    - name: Copying redis config
+      template: src=../conf/redis_broker.conf.j2 dest={{ conf_root }}/{{ redis_broker_config_name }}.conf mode=644
+      become_user: root
+
+    - name: Update uwsgi
+      service: name=uwsgi state=restarted
+      become_user: root
+
+    - name: Update nginx
+      service: name=nginx state=restarted
+      become_user: root
+
+    - name: Start redis
+      service: name={{ redis_broker_service_name }} state=restarted
+      become_user: root
+
+    - name: Start celery
+      service: name={{ celery_service_name }} state=restarted
+      become_user: root
+
+    - name: Start celery export
+      service: name={{ celery_export_service_name }} state=restarted
+      become_user: root
+
+    - name: Start celery beat
+      service: name={{ celery_beat_service_name }} state=restarted
+      become_user: root

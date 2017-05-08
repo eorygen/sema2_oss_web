@@ -1,0 +1,11 @@
+description "{{ redis_broker_service_name }}"
+
+start on runlevel [23]
+stop on shutdown
+
+setuid {{ lookup('env','USER') }}
+setgid www-data
+
+exec /usr/bin/redis-server {{ conf_root }}/{{ redis_broker_config_name }}.conf
+
+respawn

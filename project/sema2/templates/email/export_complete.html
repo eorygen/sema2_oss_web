@@ -1,0 +1,35 @@
+{% load email %}
+
+{% subject %}SEMA Data Export "{{ program_name }}" {{ export_timestamp }} {% endsubject %}
+
+{% body %}
+
+    Hi,
+
+    The SEMA data gnomes have successfully extracted your requested data.
+
+    Click the link below to download the zip:
+
+    {{ download_url }}
+
+    Sincerely,
+
+    The Team
+
+{% endbody %}
+
+{% bodyhtml %}
+
+    <p>Hi there,</p>
+
+    <p>The SEMA data gnomes have successfully extracted your requested data.</p>
+
+    <p>Click the link below to download the zip:</p>
+
+    <p>{{ download_url }}</p>
+
+    <p>Sincerely,</p>
+
+    <p>The Team</p>
+
+{% endbodyhtml %}

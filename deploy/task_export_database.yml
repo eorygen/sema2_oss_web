@@ -1,0 +1,15 @@
+- hosts: webservers
+  gather_facts: no
+
+  vars_files:
+    - app_vars.yml
+
+  vars_prompt:
+    - name: "dbpassword"
+      prompt: "what is the database password?"
+
+  tasks:
+
+    - name: Dump the database
+      service: name={{ celery_beat_service_name }} state=restarted
+      sudo: yes

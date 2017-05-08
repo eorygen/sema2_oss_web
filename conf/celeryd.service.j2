@@ -1,0 +1,22 @@
+# Start Celery
+
+description "{{ project_name }} celery service"
+author "SEMA"
+
+start on runlevel [2345]
+stop on runlevel [!2345]
+
+# retry if ended unexpectedly
+respawn
+
+# limit the retries to max 15 times with timeouts of 5 seconds
+respawn limit 15 5
+
+# Time to wait between sending TERM and KILL signals
+kill timeout 20
+
+setuid {{ lookup('env','USER') }}
+setgid www-data
+
+chdir {{ django_root }}
+exec {{ virtualenv_root }}/bin/celery -A project worker -l info -n {{ project_name }}.worker -c 3

@@ -1,0 +1,148 @@
+//
+// Pagination
+// --------------------------------------------------
+
+.pagination {
+	> li {
+		> a,
+		> span {
+			color: @lagoon;
+			border: 1px solid @coral;
+			padding: 8px 15px;
+
+			&:hover,
+			&:focus {
+				background-color: white;
+				color: @lagoon;
+				border-color: @lagoon;
+				z-index: 2;
+				.transition(~"all .15s linear");
+			}
+		}
+		&.active {
+			> a,
+			> span {
+				background-color: @coastal-surf;
+				border-color: @coral;
+				color: @the-black-flag;
+				z-index: 0;
+				&:hover,
+				&:focus {
+					background-color: @coastal-surf;
+					border-color: @coral;
+					color: @the-black-flag;
+					.transition(none);
+				}
+			}
+		}
+	}
+}
+
+.pagination-stroke {
+	> li {
+		> a,
+		> span {
+			border-width: 2px;
+			padding: 7px 15px;
+			z-index: 1;
+			margin-left: -2px;
+
+		}
+		&.active {
+			> a,
+			> span {
+				z-index: 0;
+				&:hover,
+				&:focus {
+					background-color: @coastal-surf;
+					border-color: @coral;
+					color: @the-black-flag;
+					.transition(none);
+				}
+			}
+		}
+	}
+
+	li:last-child {
+		a {
+			border-right-width: 2px;
+		}
+	}
+
+}
+
+.pagination-minimal {
+
+	&.pagination-sm {
+		.pagination-size(8px, 7px, 14px, 6px);
+	}
+
+	&.pagination-lg {
+		.pagination-size(4px, 11px, 20px, 4px);
+	}
+
+	> li {
+		&:first-child {
+			a {
+				border-radius: 0;
+				padding-left: 0;
+			}
+		}
+		&:last-child {
+			a {
+				border-radius: 0;
+				padding-right: 0;
+			}
+		}
+		> a {
+			border: none;
+			padding: 8px 9px;
+			&:hover,
+			&:focus {
+				background-color: @inverse;
+				color: @the-black-flag;
+				.transition(~"all .15s linear");
+			}
+		}
+		&.active {
+			> a,
+			> span {
+				background: none;
+				color: @the-black-flag;
+				&:hover,
+				&:focus {
+					background-color: @inverse;
+					border: none;
+					color: @the-black-flag;
+				}
+			}
+		}
+	}
+}
+
+.pagination-sm {
+	.pagination-size(4px, 11px, 14px, 6px);
+}
+
+.pagination-lg {
+	.pagination-size(10px, 19px, 20px, 4px);
+	&.pagination-stroke > li > a {
+		padding: 9px 18px;
+	}
+}
+
+> .btn {
+	&.previous,
+	&.next {
+		margin-right: 8px;
+		font-size: ceil(@font-size-base * 0.933);
+		line-height: 1.429;
+		padding-left: 23px;
+		padding-right: 23px;
+	}
+
+	&.next {
+		margin-left: 8px;
+		margin-right: 0;
+	}
+}

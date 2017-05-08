@@ -1,0 +1,68 @@
+//
+// Thumbnails
+// --------------------------------------------------
+
+.thumbnail {
+	padding: 0;
+	border: 0;
+	position: relative;
+	display: inline-block;
+
+	> img {
+		width: 100%;
+	}
+
+	&[class*="ss-"]:before {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		color: white;
+		z-index: 2;
+		opacity: 0;
+		.transition(all 0.5s);
+		font-size: @font-size-base * 2.25;
+		margin: -18px 0 0 -18px;
+		color: @pieces-of-eight;
+	}
+
+	.caption {
+		border-bottom: 2px solid @coral;
+		border-left: 2px solid @coral;
+		border-right: 2px solid @coral;
+		border-bottom-left-radius: @thumbnail-radius;
+		border-bottom-right-radius: @thumbnail-radius;
+		color: @the-black-flag;
+		font-size: @font-size-base * 0.875;
+		line-height: 24/14;
+		padding: 20px;
+	}
+
+	&.thumbnail-caption {
+		> img,
+		a > img {
+			border-top-left-radius: @thumbnail-radius;
+			border-top-right-radius: @thumbnail-radius;
+		}
+
+		> img {
+			width: 100%;
+		}
+	}
+
+	a&:after {
+		content:'\A';
+		position:absolute;
+		width:100%;
+		height:100%;
+		top:0; left:0;
+		background:rgba(0,0,0,0.6);
+		opacity:0;
+		.transition(all 0.5s);
+	}
+
+	a&:hover:after,
+	a&[class*="ss-"]:hover:before {
+		opacity: 1;
+	}
+
+}

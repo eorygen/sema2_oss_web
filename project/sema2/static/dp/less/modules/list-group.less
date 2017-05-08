@@ -1,0 +1,84 @@
+//
+// List groups
+// --------------------------------------------------
+
+.list-group-item {
+	border-color: @coral;
+	font-size: @font-size-base * 0.875;
+	color: @the-black-flag;
+
+	[class^="ss-"] {
+		font-size: 32px;
+		color: @lagoon;
+	}
+
+	> .pull-left {
+		position: absolute;
+		top: 50%;
+		padding: 0 0 0 20px;
+		margin-top: -22px;
+	}
+
+	&.active {
+		[class^="ss-"] {
+			color: white;
+		}
+	}
+
+	.media-body {
+		padding: 5px 0 5px 80px;
+	}
+}
+
+a.list-group-item {
+  	color: @the-black-flag;
+
+  	.list-group-item-heading {
+    	color: @the-black-flag;
+    	font-size: @font-size-base * 1.125;
+    	margin-bottom: 1px;
+	}
+
+  	&:hover,
+  	&:focus {
+    	background-color: @coastal-surf;
+  	}
+
+  	&.active,
+  	&.active:hover,
+  	&.active:focus {
+    	color: white;
+    	background-color: @lagoon;
+    	border-color: @overboard;
+    	.list-group-item-heading {
+    		color: white;
+    	}
+  	}
+}
+
+.list-group-item-text {
+	color: @pieces-of-eight;
+	font-size: @font-size-base * 0.875;
+	line-height: @line-height-base + 0.2;
+}
+
+.list-group-item-variant(primary; @lagoon; @overboard);
+.list-group-item-variant(success; @emerald-cove; @land-lubber);
+.list-group-item-variant(info; @bruise; @sugar-plum);
+.list-group-item-variant(warning; @banana; @doubloon);
+.list-group-item-variant(danger; @strawberry; @first-blood);
+
+
+@media screen and (min-width : 320px) and (max-width : 1000px) {
+	.list-group-item {
+		[class^="ss-"] {
+			font-size: 24px;
+		}
+		> .pull-left {
+			padding: 0 0 0 5px;
+		}
+		.media-body {
+			padding: 5px 0 5px 50px;
+		}
+	}
+}

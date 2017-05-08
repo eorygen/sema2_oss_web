@@ -1,0 +1,210 @@
+//
+// Switches
+// --------------------------------------------------
+
+.switch {
+	display: inline-block;
+	cursor: pointer;
+	border-radius: 20px;
+	position: relative;
+	text-align: left;
+	overflow: hidden;
+	line-height: 8px;
+	vertical-align: middle;
+	width: 55px;
+	.user-select(none);
+
+	&.switch-animate {
+		.switch-container {
+			.transition(margin-left 0.5s);
+		}
+
+		.switch-handle-on.switch-primary {
+			.transition(background 0.6s);
+		}
+	}
+
+	&.switch-on {
+		.switch-container {
+			margin-left: 0%;
+		}
+
+		.switch-label {
+			border-radius: 50%;
+		}
+	}
+
+	&.switch-off {
+		.switch-container {
+			margin-left: -55%;
+		}
+
+		.switch-label {
+			border-radius: 50%;
+			border-color: @pieces-of-eight;
+		}
+
+		.switch-handle-on.switch-primary {
+			background: none;
+		}
+	}
+
+	&.switch-indeterminate {
+		.switch-container {
+			margin-left: -25%;
+		}
+	}
+
+	&.switch-disabled,
+	&.switch-readonly,
+	&.switch-indeterminate {
+		.opacity(.5);
+		cursor: default !important;
+
+		.switch-handle-on,
+		.switch-handle-off,
+		.switch-label {
+			cursor: default !important;
+		}
+	}
+	.switch-container {
+		display: inline-block;
+		width: 150px;
+		top: 0;
+		border-radius: 20px;
+	}
+
+	.switch-handle-on,
+	.switch-handle-off,
+	.switch-label {
+		.box-sizing(border-box);
+		cursor: pointer;
+		display: inline-block !important;
+		height: 100%;
+		padding-bottom: 4px;
+		padding-top: 4px;
+		font-size: @font-size-base * 0.9;
+		line-height: 16px;
+	}
+
+	.switch-handle-on,
+	.switch-handle-off {
+		text-align: center;
+		z-index: 1;
+		width: 46px;
+
+		> span {
+			position: relative;
+			top: 1px;
+		}
+
+		&.switch-primary {
+			color: white;
+			background: @lagoon;
+		}
+
+		&.switch-default {
+			color: white;
+			background: @pieces-of-eight;
+		}
+	}
+
+	.switch-handle-on {
+		.border-left-radius(20px);
+		text-indent: -9px;
+	}
+
+	.switch-handle-off {
+		.border-right-radius(20px);
+		text-indent: 8px;
+	}
+
+	.switch-label {
+		text-align: center;
+		z-index: 100;
+		background: @btn-default-bg;
+		border-radius: 50%;
+		border: 2px solid @lagoon;
+		height: 24px;
+		width: 24px;
+		vertical-align: middle;
+		margin: 0 -15px;
+		position: relative;
+	}
+
+	input[type='radio'],
+	input[type='checkbox'] {
+		position: absolute !important;
+		top: 0;
+		left: 0;
+		.opacity(0);
+		z-index: -1;
+	}
+}
+
+.switch-switch-large {
+	width: 70px;
+
+	.switch-handle-on,
+	.switch-handle-off,
+	.switch-label {
+		line-height: 22px;
+		font-size: @font-size-base;
+	}
+
+	.switch-label {
+		width: 30px;
+		height: 30px;
+		margin: 0 -13px;
+	}
+
+	.switch-handle-on,
+	.switch-handle-off {
+		width: 53px;
+	}
+}
+
+
+//
+// Toggles
+// --------------------------------------------------
+
+.css-switch {
+  position: absolute;
+  margin-left: -9999px;
+  visibility: hidden;
+  + label {
+		display: block;
+		position: relative;
+		cursor: pointer;
+		outline: none;
+		user-select: none;
+		margin: 0;
+	}
+}
+
+input.css-switch-default {
+	.toogle-generator(40px, @switch-offset, white, @cutlass, @lagoon);
+}
+
+input.css-switch-default.css-switch-large {
+	.toogle-generator(50px, @switch-offset, white, @cutlass, @lagoon);
+}
+
+input.css-switch-inverse {
+	.toogle-generator(40px, 2px, @cutlass, white, white);
+	&:checked + label {
+		&:before {
+			background-color: @lagoon;
+		}
+	}
+}
+
+input.css-switch-inverse.css-switch-large {
+	.toogle-generator(50px, 2px, @cutlass, white, white);
+	&:checked + label {
+		&:before {
+			background-color: @lagoon;
+		}
+	}
+}

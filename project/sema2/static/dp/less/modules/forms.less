@@ -1,0 +1,190 @@
+//
+// Forms
+// --------------------------------------------------
+
+label {
+	font-family: @font-family-semi-bold;
+	font-weight: normal;
+	line-height: 2.4;
+	color: @the-black-flag;
+}
+
+.form-control {
+	border: 1px solid @coral;
+	color: @the-black-flag;
+	font-size: @input-font-size-base;
+	line-height: @input-line-height-base;
+	padding: 7px 12px;
+	height: 40px;
+	-webkit-appearance: none;
+	border-radius: @input-border-radius;
+	.box-shadow(none);
+	.transition(~"border .25s linear, color .25s linear, background-color .25s linear");
+	&:hover {
+		border-color: @pieces-of-eight;
+	}
+
+	.form-control-focus();
+	&[disabled],
+	&[readonly],
+	fieldset[disabled] & {
+		background-color: @input-bg-disabled;
+		cursor: default;
+	}
+}
+
+.form-control {
+	.placeholder( @cutlass );
+}
+
+.form-control-static {
+	padding-top: 6px;
+	padding-left: 12px;
+	color: @the-black-flag;
+}
+
+.has-warning {
+	.form-control-validation(@input-warning; @input-warning);
+}
+
+.has-error {
+	.form-control-validation(@input-danger; @input-danger);
+}
+
+.has-success {
+	.form-control-validation(@input-success; @input-success);
+}
+
+//
+// Horizontal forms
+// --------------------------------------------------
+
+.form-horizontal {
+	.control-label,
+	.radio,
+	.checkbox,
+	.radio-inline,
+	.checkbox-inline {
+		margin-top: 0;
+		margin-bottom: 0;
+		padding-top: 2px;
+	}
+	.radio,
+	.checkbox {
+		min-height: 20px;
+	}
+
+	.form-group-sm {
+		label,
+		.control-label {
+			font-size: @input-font-size-small;
+			padding-top: 0;
+		}
+		.form-control {
+			.input-size(@input-height-small; 6px; 10px; @input-font-size-small; @input-line-height-small);
+		}
+	}
+
+	.form-group-lg {
+		label,
+		.control-label {
+			font-size: @input-font-size-large;
+			padding-top: 0;
+		}
+
+		.form-control {
+			.input-size(@input-height-large; 10px; 15px; @input-font-size-large; @input-line-height-large);
+		}
+	}
+
+	.form-group-sm .input-group .form-control,
+	.form-group-lg .input-group .form-control {
+		border-top-left-radius: 0;
+		border-bottom-left-radius: 0;
+	}
+}
+
+// Input Sizes
+// ---------------------------------------------------
+
+.input-sm {
+	.input-size(@input-height-small; 6px; 10px; @input-font-size-small; @input-line-height-small);
+}
+
+.input-lg {
+	.input-size(@input-height-large; 10px; 15px; @input-font-size-large; @input-line-height-large);
+}
+
+// Require Marker
+// ---------------------------------------------------
+.input-required span {
+	width: 20px;
+	height: 40px;
+	position: absolute;
+	overflow: hidden;
+	display: block;
+	right: 10px;
+	top: -15px;
+	.rotate(135deg);
+}
+
+.input-required span:after{
+	content: '';
+	width: 40px;
+	height: 40px;
+	.rotate(45deg);
+	background: @banana;
+	position: absolute;
+	top: 0;
+	right: -32px;
+	border-radius: 3px;
+	-moz-border-radius: 10px;
+}
+
+.input-required span:before {
+	font-size: @btn-font-size-base * 1.25;
+	content: "*";
+	top: 11px;
+	right: 3px;
+	color: white;
+	position: absolute;
+	z-index: 2;
+}
+
+.input-icon {
+	position: relative;
+	[class*="ss-"] {
+		position: absolute;
+		top: 50%;
+		left: 15px;
+		margin-top: -11px;
+		color: @cutlass;
+	}
+
+	.form-control {
+		text-indent: 30px;
+	}
+
+}
+
+
+@media screen and (min-width : 320px) and (max-width : 768px) {
+
+	.input-required span {
+		width: 14px;
+		height: 35px;
+		top: -12px;
+	}
+
+	.input-required span:after{
+		right: -37px;
+	}
+
+	.input-required span:before {
+		font-size: @btn-font-size-base * 0.8;
+		content: "*";
+		top: 14px;
+		right: 2px;
+	}
+
+}

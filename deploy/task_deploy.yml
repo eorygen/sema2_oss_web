@@ -1,0 +1,61 @@
+- hosts: webservers
+  gather_facts: no
+
+  vars_files:
+    - app_vars.yml
+
+  tasks:
+    - local_action: osx_say msg="Deploying SEMA"
+
+    - name: Updating repository
+      git:  repo="{{ project_repo }}" dest="{{ src_root }}" update=yes
+
+    - name: Owning files
+      file: path={{ project_root }} owner={{deploy_username}} group=www-data recurse=yes
+      sudo: yes
+
+    - name: Owning db
+      file: path={{ django_root }}/db.sqlite3 mode=775
+      ignore_errors: True
+      sudo: yes
+
+    - name: Create virtualenv
+      pip: requirements="{{ django_root }}/requirements.txt" virtualenv="{{virtualenv_root}}"
+
+    - name: Collecting static resources
+      django_manage:  command=collectstatic app_path={{ django_root }} virtualenv={{ virtualenv_root }}
+
+    - name: Running migrations
+      shell: "cd {{ virtualenv_root }} && {{ virtualenv_root }}/bin/python {{ django_root }}/manage.py migrate"
+
+    - name: Copying nginx config
+      template: src=../conf/nginx.conf.j2 dest={{ conf_root }}/nginx.conf group=www-data mode=755
+
+    - name: Link nginx config
+      file: src={{ conf_root }}/nginx.conf dest=/etc/nginx/sites-enabled/{{project_name}} group=www-data state=link
+
+    - name: Update uwsgi
+      service: name=uwsgi state=restarted
+      sudo: yes
+
+    - name: Update nginx
+      service: name=nginx state=restarted
+      sudo: yes
+
+    - name: Restarting celery service
+      service: name={{ celery_service_name }} state=restarted
+      sudo: yes
+
+    - name: Restarting celery export service
+      service: name={{ celery_export_service_name }} state=restarted
+      sudo: yes
+
+    - name: Restarting celery beat service
+      service: name={{ celery_beat_service_name }} state=restarted
+      sudo: yes
+
+    - name: Reset system status (export etc)
+      shell: "cd {{ virtualenv_root }} && {{ virtualenv_root }}/bin/python {{ django_root }}/manage.py reset_system_state"
+
+    - local_action: osx_say msg="SEMA Deploy succeeded"
+

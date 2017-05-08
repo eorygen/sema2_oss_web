@@ -1,0 +1,259 @@
+//
+// Buttons
+// --------------------------------------------------
+
+.btn {
+    font-family: @font-family-semi-bold;
+    border: 1px solid transparent;
+    font-size: @btn-font-size-base;
+    line-height: @btn-line-height-base;
+    border-radius: @border-radius-base;
+    padding: 7px 15px 7px 15px;
+    text-transform: uppercase;
+    -webkit-font-smoothing: subpixel-antialiased;
+    .transition(~"all .25s linear");
+
+    > [class^="ss-"] {
+        position: relative;
+        top: 2px;
+        font-size: @btn-font-size-base * 0.75;
+
+        .btn-xs& {
+            font-size: @btn-font-size-base * 0.68;
+            top: 0;
+        }
+
+        .btn-kr& {
+            top: 2px;
+        }
+
+        .btn-sm&.pull-right {
+            top: 3px;
+        }
+
+        .btn-lg&.pull-right {
+            top: 7px;
+        }
+
+        &.pull-right {
+            top: 5px;
+        }
+    }
+
+    &,
+    &:active,
+    &.active {
+        &:focus {
+            outline: none;
+        }
+    }
+
+    &:hover,
+    &:focus {
+        outline: none;
+        color: @btn-default-color;
+    }
+
+    &:active,
+    &.active {
+        outline: none;
+        .box-shadow(none);
+    }
+
+    &.disabled,
+    &[disabled],
+    fieldset[disabled] & {
+        background-color: @btn-link-disabled-color;
+        color: fade(@btn-default-color, 75%);
+        .opacity(.7);
+    }
+}
+
+.btn-default {
+    .button-variant-stoke(@lagoon, @coral, @lagoon, @lagoon, @overboard, @btn-default-disabled-bg, @btn-default-disabled-border);
+}
+
+.btn-primary {
+    .button-variant(@btn-default-color, @lagoon, @btn-primary-hover-bg, @btn-primary-active-bg, @btn-primary-disabled-bg);
+}
+
+.btn-danger  {
+    .button-variant(@btn-default-color, @strawberry, @btn-danger-hover-bg, @btn-danger-active-bg, @btn-danger-disabled-bg);
+}
+
+.btn-warning {
+    .button-variant(@btn-default-color, @banana, @btn-warning-hover-bg, @btn-warning-active-bg, @btn-warning-disabled-bg);
+}
+
+.btn-info {
+    .button-variant(@btn-default-color, @coral, @btn-info-hover-bg, @btn-info-active-bg, @btn-info-disabled-bg);
+}
+
+.btn-success {
+    .button-variant(@btn-default-color, @emerald-cove, @btn-success-hover-bg, @btn-success-active-bg, @btn-success-disabled-bg);
+}
+
+.btn-purple {
+    .button-variant(@btn-default-color, @bruise, @btn-purple-hover-bg, @btn-purple-active-bg, @btn-purple-disabled-bg);
+}
+
+.btn-orange {
+    .button-variant(@btn-default-color, @horizon, @btn-orange-hover-bg, @btn-orange-active-bg, @btn-orange-disabled-bg);
+}
+
+.btn-inverse {
+    .button-variant(@btn-default-color, @the-black-flag, @btn-inverse-hover-bg, @btn-inverse-active-bg, @btn-inverse-disabled-bg);
+}
+
+.btn-stroke {
+    .button-variant-stoke(@lagoon, @coral, @lagoon, @lagoon, @overboard, @btn-default-disabled-bg, @btn-default-disabled-border);
+    border-width: 2px;
+    padding: 5px 15px;
+}
+
+.btn-embossed {
+    .transition(~"border .25s linear, color .25s linear, background-color .25s linear");
+    &:hover,
+    &:focus {
+        top: 2px;
+        position: relative;
+    }
+
+    &.btn-primary { .button-variant-embossed( @lagoon, @overboard ); }
+    &.btn-danger { .button-variant-embossed( @strawberry, @first-blood ); }
+    &.btn-warning { .button-variant-embossed( @banana, @doubloon ); }
+    &.btn-success { .button-variant-embossed( @emerald-cove, @land-lubber ); }
+    &.btn-purple { .button-variant-embossed( @bruise, @sugar-plum ); }
+    &.btn-orange { .button-variant-embossed( @horizon, @nassua-sunset ); }
+    &.btn-inverse { .button-variant-embossed( @the-black-flag, #000000 ); }
+}
+
+// Button sizes
+// --------------------------------------------------
+
+.btn-kr {
+    .button-size(14px, 22px, @btn-font-size-kr, @btn-line-height-kr, @border-radius-large);
+}
+.btn-lg {
+    .button-size(10px, 18px, @btn-font-size-lg, @btn-line-height-lg, @border-radius-large);
+}
+.btn-sm {
+    .button-size(5px, 13px, @btn-font-size-sm, @btn-line-height-sm, @border-radius-base);
+}
+.btn-xs {
+    .button-size(5px, 13px, @btn-font-size-xs, @btn-line-height-xs, @border-radius-small);
+}
+
+// Block button
+// --------------------------------------------------
+.btn-block {
+  white-space: normal;
+}
+
+.btn.dropdown-toggle {
+  white-space: normal;
+}
+
+
+
+// Button Animations
+// --------------------------------------------------
+.btn:after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    .transition(all 0.3s);
+}
+
+.btn.btn-animate {
+    position: relative;
+    padding: 10px 20px 10px 35px
+}
+
+.btn-animate-slide:before {
+    position: absolute;
+    left: 0;
+    width: 40%;
+    font-size: 120%;
+    line-height: 1.3;
+    color: white;
+}
+
+.btn-animate-slide.btn-activated {
+    .animation(fadeOutText 0.5s);
+}
+
+.btn-animate-slide.btn-activated:before {
+    .animation(moveToRight 0.5s);
+}
+
+.btn-animate-scale {
+    overflow: hidden;
+    position: relative;
+    padding: 10px 20px 10px 35px
+}
+
+.btn-animate-scale:before {
+    position: absolute;
+    left: 0;
+    width: 40%;
+    font-size: 120%;
+    line-height: 1.3;
+    color: white;
+}
+
+.btn-animate-scale.btn-activated:before {
+    .animation(scaleUp 0.5s);
+}
+
+.btn-animate-result span {
+    display: inline-block;
+    width: 100%;
+}
+
+.btn-animate-result:before {
+    position: absolute;
+    left: 0;
+    width: 40%;
+    font-size: 120%;
+    line-height: 1.3;
+    color: white;
+}
+
+.btn.btn-animate-success,
+.btn.btn-animate-success:hover,
+.btn.btn-animate-success:focus,
+.btn.btn-animate-error,
+.btn.btn-animate-error:hover,
+.btn.btn-animate-error:focus {
+    color: transparent;
+}
+
+.btn-animate-success:after,
+.btn-animate-error:after {
+    z-index: 1;
+    color: white;
+    left: 37%;
+}
+
+.btn-animate-success:before {
+    content: "\263B";
+}
+
+.btn-animate-success:after {
+    content: @btn-animate-succss-text;
+    .animation(moveUp 0.5s);
+}
+
+.btn-animate-error {
+    .animation(shake 0.5s);
+}
+
+.btn-animate-error:before {
+    content: "\2639";
+}
+
+.btn-animate-error:after {
+    content: @btn-animate-error-text;
+    .animation(scaleFromUp 0.5s);
+}

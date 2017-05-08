@@ -1,0 +1,12 @@
+{% extends 'center_content.html' %}
+
+{% block page_jsx %}
+
+    var showWelcome = {% if show_welcome %}true{% else %}false{% endif %};
+
+    React.render(
+            <HomePage showWelcome={showWelcome}/>,
+            document.getElementById('page')
+    );
+
+{% endblock %}

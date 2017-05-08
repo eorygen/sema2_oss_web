@@ -1,0 +1,73 @@
+{% load email %}
+
+{% subject %}You have been invited to administer the {{ program_name }} program.{% endsubject %}
+
+{% body %}
+
+    Hello, {{ first_name }}.
+
+    You have been invited to administer the {{ program_name }} program.
+
+    {% if is_existing_user %}
+        As you are an existing SEMA user you can simply use your existing participant/admin ID and password to sign into the website.
+
+            Participant/Admin ID: {{ username }}
+
+        If you have forgotten your password you can reset it here: {{ password_change_url }}
+
+    {% else %}
+
+        As you are a new user we have automatically generated an participant/admin ID and password for you. Use this id and password to sign into the website.
+
+            Participant/Admin ID: {{ username }}
+            Password: {{ password }}
+
+        If you forget your password you can reset it here: {{ password_change_url }}
+    {% endif %}
+
+    If you want to also join the program as a participant and receive surveys on your mobile device you should send a participant invite to this email address after logging in.
+
+    Please click the Confirm Access link below to confirm your access as a program administrator:
+
+    {{ enrollment_url }}
+
+    Sincerely,
+
+    The Team
+
+{% endbody %}
+
+{% bodyhtml %}
+
+    <p><strong>Hello, {{ first_name }}.</strong></p>
+
+    <p>You have been invited to administer the {{ program_name }} program.</p>
+
+    {% if is_existing_user %}
+        <p>As you are an existing SEMA user you can simply use your existing participant/admin ID and password to sign into the website.</p>
+        <p>
+            Participant/Admin ID: <strong>{{ username }}</strong><br/>
+        </p>
+        <p>If you have forgotten your password you can reset it here: <a href="{{ password_change_url }}">Reset Password</a></p>
+
+    {% else %}
+
+        <p>As you are a new user we have automatically generated an participant/admin ID and password for you. Use this id and password to sign into the website.</p>
+        <p>
+            Participant/Admin ID: <strong>{{ username }}</strong><br/>
+            Password: <strong>{{ password }}</strong>
+        </p>
+        <p>If you forget your password you can reset it here: <a href="{{ password_change_url }}">Reset Password</a></p>
+    {% endif %}
+
+    <p>If you want to also join the program as a participant and receive surveys on your mobile device you should send a participant invite to this email address after logging in.</p>
+
+    <p>Please click the Confirm Access link below to confirm your access as a program administrator:</p>
+
+    <a href="{{ enrollment_url }}">Confirm Access</a>
+
+    <p>Sincerely,</p>
+
+    <p>The Team</p>
+
+{% endbodyhtml %}

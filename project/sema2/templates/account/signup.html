@@ -1,0 +1,33 @@
+{% extends "center_content.html" %}
+
+{% load url from future %}
+{% load i18n %}
+{% load bootstrap3 %}
+
+{% block head_title %}{% trans "Signup" %}{% endblock %}
+
+{% block center_content %}
+<h5>{% trans "Join the program" %}</h5>
+
+<form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+
+    {% if redirect_field_value %}
+    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+    {% endif %}
+
+    <strong>Disclaimer</strong>
+    <p><small></small></p>
+    <p><small></small></p>
+    <p><strong></strong></p>
+
+    <button type="submit" class="btn btn-primary">{% trans "Sign Up" %} &raquo;</button>
+    <br/>
+    <br/>
+</form>
+
+
+{% endblock %}
+
+

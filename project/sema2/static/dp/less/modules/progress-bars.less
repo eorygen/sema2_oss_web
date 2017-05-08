@@ -1,0 +1,64 @@
+//
+// Progress bars
+// --------------------------------------------------
+
+.progress {
+    height: @progress-bar-height;
+    background-color: @progress-bg;
+    border-radius: 30px;
+    .box-shadow(none);
+    overflow: visible;
+    margin-bottom: 20px;
+}
+
+.progress-bar {
+    background-color: @progress-bar-color;
+    .box-shadow(none);
+    border-radius: 30px;
+    text-align: right;
+    color: @the-black-flag;
+    font-size: @font-size-base;
+    > span {
+        position: relative;
+        bottom: 20px;
+    }
+}
+
+.progress-stacked > .progress-bar {
+    border-radius: 0;
+}
+
+.progress-stacked > .progress-bar:last-child {
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
+
+.progress-stacked > .progress-bar:first-child {
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+}
+
+.progress-striped .progress-bar {
+    #gradient > .striped();
+    background-size: 20px 20px;
+}
+
+.progress.active .progress-bar {
+    .animation(progress-bar-stripes 2s linear infinite);
+}
+
+.progress > .progress-bar-success {
+  background-color: @progress-bar-success-bg;
+}
+
+.progress > .progress-bar-info {
+  background-color: @progress-bar-info-bg;
+}
+
+.progress > .progress-bar-danger {
+  background-color: @progress-bar-danger-bg;
+}
+
+.progress > .progress-bar-warning {
+  background-color: @progress-bar-warning-bg;
+}

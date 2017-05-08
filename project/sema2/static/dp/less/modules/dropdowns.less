@@ -1,0 +1,140 @@
+//
+// Dropdowns
+// --------------------------------------------------
+
+.dropdown-menu {
+	background-color: white;
+	border: 1px solid @cutlass;
+	.box-shadow(none);
+	width: 100%;
+	margin-top: 10px;
+	left: 0;
+	right: auto;
+
+	> li > a {
+		margin-left: -1px;
+		margin-right: -1px;
+		color: @gunpowder;
+		font-size: @font-size-base;
+		padding: 4px 15px;
+		&:hover {
+			background-color: @coastal-surf;
+		}
+	}
+
+	> .active > a {
+		&,
+		&:hover,
+		&:focus {
+			color: @inverse;
+			text-decoration: none;
+			outline: 0;
+			background-color: @lagoon;
+			border: 1px solid @overboard;
+		}
+	}
+
+	> .disabled > a {
+		&,
+		&:hover,
+		&:focus {
+			color: @cutlass;
+		}
+	}
+
+	> .arrow {
+		border-width: 6px;
+		&,
+		&:after {
+			position: absolute;
+			display: block;
+			width: 0;
+			height: 0;
+			border-color: transparent;
+			border-style: solid;
+			border-width: 5px;
+			content: "";
+		}
+	}
+
+	> .top.arrow {
+		right: 88%;
+		border-top-width: 0;
+		border-bottom-color: @cutlass;
+		top: -6px;
+		&:after {
+			content: " ";
+			top: 1px;
+			margin-left: -5px;
+			border-top-width: 0;
+			border-bottom-color: white;
+		}
+	}
+
+	> .bottom.arrow {
+		left: 88%;
+		border-bottom-width: 0;
+		border-top-color: @cutlass;
+		bottom: -6px;
+		&:after {
+			content: " ";
+			bottom: 1px;
+			margin-left: -5px;
+			border-bottom-width: 0;
+			border-top-color: white;
+		}
+	}
+}
+
+.btn-embossed + .dropdown-menu {
+	margin-top: 14px;
+}
+
+.dropdown-inverse {
+	background-color: @the-black-flag;
+	border-color: @the-black-flag;
+	> li > a {
+		color: white;
+		&:hover {
+			background-color: @gunpowder;
+			color: white;
+		}
+	}
+	> .active > a {
+		&,
+		&:hover,
+		&:focus {
+			border: none;
+		}
+	}
+	> .top.arrow {
+		border-bottom-color: @the-black-flag;
+		top: -6px;
+		&:after {
+			border-bottom-color:  @the-black-flag;
+		}
+	}
+}
+
+.dropdown-header {
+	color: @cutlass;
+	padding: 3px 15px;
+	text-transform: uppercase;
+}
+
+.dropup {
+  .dropdown-menu {
+    margin-bottom: 10px;
+  }
+}
+
+@media (min-width: 1000px) {
+	.dropdown-menu {
+		right: 0;
+		left: auto;
+
+		> .top.arrow {
+			right: 13px;
+		}
+	}
+}
