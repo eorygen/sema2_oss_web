@@ -7,9 +7,7 @@ SEMA (Smartphone Ecological Momentary Assessment) is a suite of software for des
 
 ## Authors:
 
-Ashemah Harrison
-Starehe Harrison
-Hau Le
+Harrison, A., Harrsion, S., Koval, P., Gleeson, J., Alvarez, M. (2017). SEMA: Smartphone Ecological Momentary Assessment (Version 2). [Computer software]. https://github.com/eorygen
 
 ## Project hosting page:
 
